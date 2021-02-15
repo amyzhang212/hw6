@@ -18,13 +18,13 @@ window.addEventListener('DOMContentLoaded', async function(event) {
   // console to ensure you've got good data
   // ⬇️ ⬇️ ⬇️
 
-  let api_key = "4e92859f249ce468e9ba6d55ce1f2747"
-  let URL = await fetch ('https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US')
+  let apiKey = "4e92859f249ce468e9ba6d55ce1f2747" 
+  let URL = await fetch (`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US`) // how come this is not dynamic??
   let URLjson = await URL.json()
   let movies =URLjson.results
   let db = firebase.firestore()
-
-  console.log (movies)
+  
+  // console.log (movies)
   // ⬆️ ⬆️ ⬆️ 
   // End Step 1
   
@@ -43,8 +43,8 @@ window.addEventListener('DOMContentLoaded', async function(event) {
 
   for (let i=0; i<movies.length; i++) {
     let movieid = movies[i].id 
-    
-  }
+    letmovietitle = movies[i].
+  
   // ⬆️ ⬆️ ⬆️ 
   // End Step 2
 
