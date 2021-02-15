@@ -18,6 +18,13 @@ window.addEventListener('DOMContentLoaded', async function(event) {
   // console to ensure you've got good data
   // ⬇️ ⬇️ ⬇️
 
+  let api_key = "4e92859f249ce468e9ba6d55ce1f2747"
+  let URL = await fetch ('https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US')
+  let URLjson = await URL.json()
+  let movies =URLjson.results
+  let db = firebase.firestore()
+
+  console.log (movies)
   // ⬆️ ⬆️ ⬆️ 
   // End Step 1
   
@@ -34,6 +41,10 @@ window.addEventListener('DOMContentLoaded', async function(event) {
   // </div>
   // ⬇️ ⬇️ ⬇️
 
+  for (let i=0; i<movies.length; i++) {
+    let movieid = movies[i].id 
+    
+  }
   // ⬆️ ⬆️ ⬆️ 
   // End Step 2
 
