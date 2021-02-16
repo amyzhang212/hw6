@@ -51,8 +51,16 @@ window.addEventListener('DOMContentLoaded', async function(event) {
     <div class="w-1/5 p-4 movie-${movieid}">
     <img src="https://image.tmdb.org/t/p/w500/${movieposter}" class="w-full">
     <a href="#" class="watched-button block text-center text-white bg-green-500 mt-4 px-4 py-2 rounded">I've watched this!</a> </div>`)
-  } 
-
+   
+    
+    let docRef = await db.collection('watched').doc(`${movieid}`).get()
+    let item = docRef.data()
+    
+    console.log(item)
+    if (item) {
+      document.querySelector(`.movie-${movieid}`).classList.add('opacity-20')
+    }
+    
   // ⬆️ ⬆️ ⬆️ 
   // End Step 2
 
@@ -68,13 +76,21 @@ window.addEventListener('DOMContentLoaded', async function(event) {
   //   to remove the class if the element already contains it.
   // ⬇️ ⬇️ ⬇️
 
-document.querySelector(`.movie-${movieid}.watched-button`).addEventListener("click", async function(event) {
-  event.preventDefault()
-    console.log(`${movietitle} with the ID of ${movieid} has been watched`)
-  }) 
+  // 
 
+    document.querySelector(`.movie-${movieid} .watched-button`).addEventListener("click", async function(event) {
+      event.preventDefault()
+        console.log(`${movietitle} with the ID of ${movieid} has been watched`)
+        document.querySelector(`.movie-${movieid}`).classList.add('opacity-20')
+        let docRef = await db.collection('watched').doc(`${movieid}`).set({
+        })
+    })
+  }
+}) 
   // ⬆️ ⬆️ ⬆️ 
   // End Step 3
+// after we render our buttons, we want to cross-referenece button IDs with firebase IDs and apply opacity 
+
 
   // Step 4: 
   // - Properly configure Firebase and Firebase Cloud Firestore
@@ -93,4 +109,3 @@ document.querySelector(`.movie-${movieid}.watched-button`).addEventListener("cli
   //   database.
   // - Hint: you can use if (document) with no comparison
   //   operator to test for the existence of an object.
-})
